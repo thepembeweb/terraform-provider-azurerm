@@ -359,6 +359,9 @@ func expandRoleDefinitionPermissions(input []interface{}) []authorization.Permis
 		actionsOutput := make([]string, 0)
 		actions := raw["actions"].([]interface{})
 		for _, a := range actions {
+			if a == nil {
+				continue
+			}
 			actionsOutput = append(actionsOutput, a.(string))
 		}
 		permission.Actions = &actionsOutput
@@ -366,6 +369,9 @@ func expandRoleDefinitionPermissions(input []interface{}) []authorization.Permis
 		dataActionsOutput := make([]string, 0)
 		dataActions := raw["data_actions"].(*schema.Set)
 		for _, a := range dataActions.List() {
+			if a == nil {
+				continue
+			}
 			dataActionsOutput = append(dataActionsOutput, a.(string))
 		}
 		permission.DataActions = &dataActionsOutput
@@ -373,6 +379,9 @@ func expandRoleDefinitionPermissions(input []interface{}) []authorization.Permis
 		notActionsOutput := make([]string, 0)
 		notActions := raw["not_actions"].([]interface{})
 		for _, a := range notActions {
+			if a == nil {
+				continue
+			}
 			notActionsOutput = append(notActionsOutput, a.(string))
 		}
 		permission.NotActions = &notActionsOutput
@@ -380,6 +389,9 @@ func expandRoleDefinitionPermissions(input []interface{}) []authorization.Permis
 		notDataActionsOutput := make([]string, 0)
 		notDataActions := raw["not_data_actions"].(*schema.Set)
 		for _, a := range notDataActions.List() {
+			if a == nil {
+				continue
+			}
 			notDataActionsOutput = append(notDataActionsOutput, a.(string))
 		}
 		permission.NotDataActions = &notDataActionsOutput
